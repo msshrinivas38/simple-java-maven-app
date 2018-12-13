@@ -4,16 +4,21 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                checkout scm
-                def mvnHome = tool 'maven-3'
+                script {
+                
+                   checkout scm
+                    def mvnHome = tool 'maven-3'
                 sh 'mvn clean install'
                 sh 'mvn -B -DskipTests clean package'
+                }
             }
         }
         
         stage('Test') {
             steps {
+                script {
                 sh 'mvn test'
+                  }
             }
             post {
                 always {
@@ -23,8 +28,10 @@ pipeline {
         }
         stage('Deliver') {
             steps {
+                script {
                 sh './jenkins/scripts/deliver.sh'
-            }
+                }
+            }   
         }
     }
 }

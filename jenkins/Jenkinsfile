@@ -7,8 +7,11 @@ pipeline {
                 script {
                 
                    checkout scm
+                echo "Installing Java"
+                sh 'sudo apt-get -y install unzip java-1.8.0-openjdk'
+               
                     echo "Installing Maven"
-                sh 'yum -y install maven'
+                sh 'sudo apt-get -y install maven'
                 sh 'mvn -B -DskipTests clean package'
                 }
             }

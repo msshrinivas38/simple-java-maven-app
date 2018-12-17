@@ -8,7 +8,7 @@ pipeline {
                 
                    checkout scm
                 echo "Installing Java"
-                sh 'sudo apt-get -y install unzip java-1.8.0-openjdk'
+                sh 'sudo apt-get install oracle-java8-installer'
                
                     echo "Installing Maven"
                 sh 'sudo apt-get -y install maven'

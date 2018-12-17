@@ -25,5 +25,15 @@ pipeline {
                 }
             }   
         }
+        
+          stage('Docker-image') {
+            steps {
+                script {
+                sh 'docker build -t msshrinivas38/java-app .'
+                sh 'docker login -username=$env.username -password=$env.pwd'
+                sh 'docker push msshrinivas38/java-app'
+                }
+            }   
+        }
     }
 }
